@@ -7,9 +7,9 @@ import { Request, Response } from "express";
 export const createUserController = async (req: Request, res: Response) => {
     try {
         const user = await createUserService(req.body);
-        res.status(201).json({success: true, message: "Usuario creado", user: user});
+        res.status(201).json(user);
     } catch (error) {
         console.error(`Error en createUserController: ${error}`);
-        res.status(500).json({message: "Error al crear el usuario"});
+        res.status(500).json({message: "Controller: Error al crear el usuario"});
     }
 }
