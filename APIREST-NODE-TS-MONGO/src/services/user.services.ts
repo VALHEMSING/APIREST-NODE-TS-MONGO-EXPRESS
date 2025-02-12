@@ -1,3 +1,6 @@
+import bcrypt from "bcryptjs";
+
+
 import { CreateUserDto, UpdateUserDto } from "@dtos/user.dto";
 import { IUser } from "@interfaces/user.interfaces";
 import User from "@models/user.model";
@@ -45,8 +48,20 @@ export const findUserByIdService = async (id: string): Promise<IUser | null> =>{
 
 // Función para actualizar un user por su id
 export const updateUserByIdService = async (id: string, user: UpdateUserDto): Promise<IUser | null> =>{
+    
+    const { password } = user
+
     try {
+        // Verificar si se proporciona una nueva contraseñas
+        if (password) {
+            // Encriptar la nueva contraseñas
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
         const updatedUser = await User.findByIdAndUpdate(id, user, { new: true }).exec();
+        if(!updatedUser){
+            throw new Error(`Usuario no encontrado`)
+        }
         return updatedUser
     } catch (error) {
         console.error(`Error en updateUserByIdService: ${error}`);
