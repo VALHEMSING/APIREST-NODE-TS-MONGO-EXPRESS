@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 
 
 
-export const loginSerices = async (data: LoginDto) => {
+export const loginServices = async (data: LoginDto) => {
 
     const { email, password } = data
 
