@@ -7,7 +7,7 @@ export const loginController = async (req: Request, res: Response) => {
     try {
         console.log(req.body);
         const user = await loginServices(req.body);
-        res.status(200).json({message: "User logged in", user: user});
+        res.status(200).json({message: "User logged in", token: user.token});
 
     } catch (error) {
         console.error(`Error en loginController: ${error}`);

@@ -33,7 +33,6 @@ class Server {
     routes(){
         this.app.use(this.apiPaths.users, userRoutes, )
         this.app.use(this.apiPaths.auth,  authRoutes,)
-
     }
 
 

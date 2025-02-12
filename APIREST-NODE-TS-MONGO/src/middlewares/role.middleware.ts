@@ -1,18 +1,15 @@
-import { ERoles } from "@enums/role.enum";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response, NextFunction } from 'express';
 
+export const roleMiddleware = (rolesPermitidos: string[]) => {
+  return (req: Request, res: Response, next: NextFunction): void | any => {
+    const userRoles = req.body?.roles || [];
+    const hasRole = userRoles.some((role: string) => rolesPermitidos.includes(role));
 
-
-
-export const roleMiddleware = (requiredRole: ERoles) => {
-    return (req: Request, res: Response, next: NextFunction) => {
-        
-        const userRole = req.body.roles
-
-        if(userRole.includes(requiredRole)) {
-            next();
-        } else {
-            res.status(403).json({ message: "Acceso denegado. No tienes permiso para realizar esta acción" });
-        }
+    if (!hasRole) {
+      return res.status(403).json({ message: 'No tienes el rol necesario para realizar esta acción. Acceso denegado' });
     }
-}
+
+    next();
+  };
+};
+
