@@ -1,4 +1,4 @@
-import { createUserService, findAllUsersService, findUserByIdService, updateUserByIdService } from "@services/user.services";
+import { createUserService, deleteUserByIdService, findAllUsersService, findUserByIdService, updateUserByIdService } from "@services/user.services";
 import { Request, Response } from "express";
 
 
@@ -28,7 +28,8 @@ export const findAllUsersController = async (req: Request, res: Response) => {
 // Controlador para obtener un usuario por su id
 export const findUserByIdController = async (req: Request, res: Response) => {
     try {
-        const user = await findUserByIdService(req.params.id);
+        const { id } = req.params
+        const user = await findUserByIdService(id);
         res.status(200).json(user);
     } catch (error) {
         console.error(`Error en findUserByIdController: ${error}`);
@@ -45,5 +46,18 @@ export const updateUserByIdController = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(`Error en updateUserByIdController: ${error}`);
         res.status(500).json({message: "Controller: Error al actualizar el usuario"});
+    }
+}
+
+
+// Controlador para eliminar un usuario por su id
+export const deleteUserByIdController = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const user = await deleteUserByIdService(id);
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(`Error en deleteUserByIdController: ${error}`);
+        res.status(500).json({message: "Controller: Error al eliminar el usuario"});
     }
 }
