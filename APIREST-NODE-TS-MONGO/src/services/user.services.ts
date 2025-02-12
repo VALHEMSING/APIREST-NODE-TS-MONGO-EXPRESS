@@ -4,7 +4,7 @@ import User from "@models/user.model";
 
 
 
-
+// Función para crear un usuario
 export const createUserService = async (user: CreateUserDto): Promise<IUser> => {
     // Aquí irá la lógica para crear un usuario
     try {
@@ -14,5 +14,17 @@ export const createUserService = async (user: CreateUserDto): Promise<IUser> => 
     } catch (error) {
         console.error(`Error en createUserService: ${error}`);
         throw Error("Error al crear el usuario");
+    }
+}
+
+
+// Función para actualizar un usuario
+export const findAllUsersService = async (): Promise<IUser[]> => {
+    try {
+        return await User.find();
+        
+    } catch (error) {
+        console.error(`Error en findAllUsersService: ${error}`);
+        throw Error("Error al obtener los usuarios");
     }
 }
