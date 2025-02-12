@@ -5,7 +5,7 @@ import User from "@models/user.model";
 
 
 
-export const createUserService = async (user: IUser): Promise<IUser> => {
+export const createUserService = async (user: CreateUserDto): Promise<IUser> => {
     // Aquí irá la lógica para crear un usuario
     try {
         const newUser = new User(user); // Creamos una nueva instancia del modelo User
