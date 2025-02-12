@@ -18,7 +18,7 @@ export const createUserController = async (req: Request, res: Response) => {
 export const findAllUsersController = async (req: Request, res: Response) => {
     try {
         const users = await findAllUsersService();
-        res.status(200).json(users);
+        res.status(200).json({message: "Users found", users: users});
     } catch (error) {
         console.error(`Error en findAllUsersController: ${error}`);
         res.status(500).json({message: "Controller: Error al obtener los usuarios"});
