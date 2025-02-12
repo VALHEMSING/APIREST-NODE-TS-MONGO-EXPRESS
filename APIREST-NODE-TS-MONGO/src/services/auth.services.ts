@@ -17,10 +17,10 @@ export const loginServices = async (data: LoginDto) => {
       throw new Error("Credenciales incorrectas");
     }
 
-    // const isMatch = await bcrypt.compare(password, user.password);
-    // if (!isMatch) {
-    //   throw new Error("Credenciales incorrectas");
-    // }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      throw new Error("Credenciales incorrectas");
+    }
 
     const token = jwt.sign(
       { id: user._id, role: user.roles },
