@@ -1,3 +1,4 @@
+import { ERoles } from "@enums/role.enum";
 import { IUser } from "@interfaces/user.interfaces";
 import { model, Schema } from "mongoose";
 
@@ -6,15 +7,12 @@ import { model, Schema } from "mongoose";
 // con los campos name y email
 const UserSchema = new Schema<IUser>(
     {
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true
-        }
+        documento: { type: String, required: true },
+        nombres: { type: String, required: true },
+        apellidos: { type: String, required: true },
+        email: { type: String, required: true },
+        password: { type: String, required: true },
+        roles: { type: [String], enum:Object.values(ERoles), default: [ERoles.USER] },
     },
     {
         timestamps: true,
