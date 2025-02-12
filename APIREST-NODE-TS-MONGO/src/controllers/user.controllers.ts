@@ -1,4 +1,4 @@
-import { createUserService, findAllUsersService } from "@services/user.services";
+import { createUserService, findAllUsersService, findUserByIdService } from "@services/user.services";
 import { Request, Response } from "express";
 
 
@@ -22,5 +22,16 @@ export const findAllUsersController = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(`Error en findAllUsersController: ${error}`);
         res.status(500).json({message: "Controller: Error al obtener los usuarios"});
+    }
+}
+
+// Controlador para obtener un usuario por su id
+export const findUserByIdController = async (req: Request, res: Response) => {
+    try {
+        const user = await findUserByIdService(req.params.id);
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(`Error en findUserByIdController: ${error}`);
+        res.status(500).json({message: "Controller: Error al obtener el usuario"});
     }
 }
