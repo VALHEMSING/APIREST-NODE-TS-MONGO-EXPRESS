@@ -20,6 +20,7 @@
       "@routes/*": ["routes/*"],
       "@config/*": ["config/*"],
       "@types/*": ["types/*"],
+      "@enums/*": ["enums/*"],
       "@dtos/*": ["dtos/*"]
     }
   },
