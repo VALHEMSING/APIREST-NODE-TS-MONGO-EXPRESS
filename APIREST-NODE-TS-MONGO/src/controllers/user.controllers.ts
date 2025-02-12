@@ -1,4 +1,4 @@
-import { createUserService, findAllUsersService, findUserByIdService } from "@services/user.services";
+import { createUserService, findAllUsersService, findUserByIdService, updateUserByIdService } from "@services/user.services";
 import { Request, Response } from "express";
 
 
@@ -33,5 +33,17 @@ export const findUserByIdController = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(`Error en findUserByIdController: ${error}`);
         res.status(500).json({message: "Controller: Error al obtener el usuario"});
+    }
+}
+
+// Controlador para actualizar un usuario por su id
+export const updateUserByIdController = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const user = await updateUserByIdService(id, req.body);
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(`Error en updateUserByIdController: ${error}`);
+        res.status(500).json({message: "Controller: Error al actualizar el usuario"});
     }
 }
