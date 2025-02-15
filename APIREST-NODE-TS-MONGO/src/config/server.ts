@@ -6,6 +6,7 @@ import connectDB from "./db";
 
 
 import userRoutes from "@routes/user.routes";
+import authRoutes from "@routes/auth.routes";
 
 
 class Server {
@@ -13,6 +14,7 @@ class Server {
     private port: number;
     private apiPaths = {
         users: "/api/users",
+        auth: "/api/auth"
     }
   
 
@@ -29,7 +31,8 @@ class Server {
 
 
     routes(){
-        this.app.use(this.apiPaths.users, userRoutes)
+        this.app.use(this.apiPaths.users, userRoutes, )
+        this.app.use(this.apiPaths.auth,  authRoutes,)
     }
 
 
