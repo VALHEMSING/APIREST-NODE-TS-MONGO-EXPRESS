@@ -11,7 +11,8 @@ export interface CreateUserDto extends IUser {
     apellidos: string;
     email: string;
     password: string;
-    roles: ERoles[]    
+    roles: ERoles[]
+    refreshToken?: string[]    
 }
 
 export interface UpdateUserDto {
@@ -21,4 +22,5 @@ export interface UpdateUserDto {
     email?: string;
     password?: string;
     roles?: ERoles[]
+    refreshToken?: string[]
 }

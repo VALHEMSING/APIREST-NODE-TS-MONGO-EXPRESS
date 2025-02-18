@@ -1,6 +1,6 @@
 import { createUserService, deleteUserByIdService, findAllUsersService, findUserByIdService, updateUserByIdService } from "@services/user.services";
 import { Request, Response } from "express";
-
+// MONGO_URI=mongodb://localhost:27017/MI_DB PORT=5000 ACCESS_SECRET=secret REFRESH_TOKEN=refresToken NODE_ENV=production
 
 
 // Controlador para crear un usuario
