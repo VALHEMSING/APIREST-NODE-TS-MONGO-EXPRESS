@@ -30,6 +30,10 @@ const UserSchema = new Schema<IUser>(
         estado:{
             type: Boolean,
             default: true
+        },
+        refreshToken: {
+            type: [String], 
+            default: []
         }
     },
     {
